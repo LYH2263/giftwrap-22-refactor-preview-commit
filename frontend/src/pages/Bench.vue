@@ -23,7 +23,7 @@ async function go(save) {
   busy.value = true
   try {
     out.value = save
-      ? await postJSON('/api/estimate', { box_id: bid.value, save: true })
+      ? await postJSON('/api/estimate', { box_id: bid.value })
       : await getJSON(`/api/estimate?box_id=${bid.value}`)
   } catch (e) {
     err.value = String(e.message || e)
@@ -47,6 +47,7 @@ async function go(save) {
     <p v-if="err" class="bad">{{ err }}</p>
     <div v-if="out" class="result-board">
       <div class="figure">{{ out.paper_m2 }}<span>m²</span></div>
+      <p class="stat-line" v-if="out.run_id">已写入用纸档 #{{ out.run_id }}</p>
       <p class="stat-line" v-if="out.ribbon">
         十字丝带约 {{ out.ribbon.ribbon_m ?? out.ribbon }} m
       </p>

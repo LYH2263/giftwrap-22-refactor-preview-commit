@@ -23,7 +23,7 @@ onMounted(async () => {
     <ul v-else class="item-list">
       <li v-for="r in items" :key="r.id">
         <span>{{ r.box_name }}</span>
-        <span class="meta">{{ r.result?.paper_m2 ?? '—' }} m²</span>
+        <span class="meta">{{ r.paper_m2 ?? r.result?.paper_m2 ?? '—' }} m² · 丝带 {{ r.ribbon_m ?? r.result?.ribbon?.ribbon_m ?? '—' }} m</span>
       </li>
     </ul>
   </div>
